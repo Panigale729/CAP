@@ -2,4 +2,11 @@
 
 {% block body %}
 <h1>ROOM</h1>
+
+<p>
+    <div>Hello, {{request.user}} </div>
+    <div>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</p>
 {% endblock %}

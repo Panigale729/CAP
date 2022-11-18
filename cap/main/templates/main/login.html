@@ -1,3 +1,6 @@
+{% load static %}
+
+
 <!DOCTYPE html>
 <html>
     
@@ -14,27 +17,35 @@
 			margin: 0;
 			padding: 0;
 			height: 100%;
-			background: #7abecc !important;
-		}
-		.user_card {
-			width: 350px;
-			margin-top: auto;
-			margin-bottom: auto;
-			background: #74cfbf;
-			position: relative;
-			display: flex;
-			justify-content: center;
-			flex-direction: column;
-			padding: 10px;
-			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			border-radius: 5px;
-
-		}
+			background: #7abecc !important;}
 
 		.form_container {
 			margin-top: 20px;
+			position: fixed;
+            top: 418px;
+			left: 500px;
+			
+		}
+
+		.form_container1 {
+			margin-top: 20px;
+			position: fixed;
+            top: 655px;
+			left: 500px;
+			
+		}
+
+		.naujas {
+			margin-top: 20px;
+			position: fixed;
+            top: 495px;
+			left: 500px;
+			
+		}
+
+		.field{
+			background-color: #E3CEB3;
+  			color: black;
 		}
 
 		#form-title{
@@ -72,37 +83,40 @@
 			padding: 10px;
 			margin-top: 10px;
 		}
+
+		#image-div {
+            background-image: url("{% static 'main/images/register.png' %}");
+            background-repeat: no-repeat;
+            background-position: center;
+            height:900px;
+			}
 	</style>
 
 </head>
 <body>
+<div id="image-div">
 	<div class="container h-100">
-		<div class="d-flex justify-content-center h-100">
+		<div class="d-flex h-100">
 			<div class="user_card">
-				<div class="d-flex justify-content-center">
-
-
-					<h3 id="form-title">LOGIN</h3>
-				</div>
-				<div class="d-flex justify-content-center form_container">
+				<div class="form_container">
 					<form method="POST" action="">
                         {% csrf_token %}
 						<div class="input-group mb-3">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
-							</div>
-							<input type="text" name="username" placeholder="Username..." class="form-control">
-						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-								<input type="password" name="password" placeholder="Password..." class="form-control" >
+							<input type="text" name="username" placeholder="Username..." class="field">
 						</div>
 
-							<div class="d-flex justify-content-center mt-3 login_container">
+						<div class="naujas">
+						<div class="input-group mb-2 ">
+							
+								<input type="password" name="password" placeholder="Password..." class="field" >
+						</div>
+
+							<div class="d-flex mt-3 login_container">
 				 				<input class="btn login_btn" type="submit" value="Login">
 				   			</div>
+
+						</div>
+
 					</form>
 
 				</div>
@@ -112,7 +126,7 @@
                 {% endfor %}
 		
 				<div class="mt-4">
-					<div class="d-flex justify-content-center links">
+					<div class="form_container1">
 						Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
 					</div>
 			
@@ -120,6 +134,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </body>
 
 </html>

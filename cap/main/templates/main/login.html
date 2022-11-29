@@ -1,166 +1,41 @@
-{% load static %}
+{% load static %} <!-- loadint static folderi (su fotkem siuo atveju) --> 
 
 
 <!DOCTYPE html>
 <html>
     
 <head>
+
 	<title>Login</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-
-
-	<style>
-		body,
-		html {
-			margin: 0;
-			padding: 0;
-			height: 100%;
-			background: #7abecc !important;}
-
-		.form_container {
-			margin-top: 20px;
-			position: fixed;
-            top: 318px;
-			left: 325px;
-			
-		}
-
-		.form_container1 {
-			margin-top: 20px;
-			position: fixed;
-            top: 555px;
-			left: 325px;
-			
-		}
-
-		.naujas { /*password*/
-			margin-top: 20px;
-			position: fixed;
-            top: 395px;
-			left: 325px; 
-			
-		}
-
-		.buttonas{
-			background: url("{% static 'main/images/empty-button.png' %}");
-            background-repeat: no-repeat;
-            cursor:pointer;
-			width: 150px;
-            height: 40px;
-			border: none;
-
-			position: fixed;
-            top: 460px;
-			left: 325px;
-		}
-
-		#login{
-			background: none;
-			color: inherit;
-			border: none;
-			padding: 0;
-			font: inherit;
-			cursor: pointer;
-			outline: inherit;
-			position:fixed;
-			top: 472px;
-			left:382px;
-			font-weight: bold;
-		}
-
-		.field{
-			background-color: #E3CEB3;
-  			color: black;
-		}
-
-		#form-title{
-			color: #fff;
-			
-		}
-
-		.login_btn {
-			width: 100%;
-			background: #33ccff !important;
-			color: white !important;
-		}
-		.login_btn:focus {
-			box-shadow: none !important;
-			outline: 0px !important;
-		}
-		.login_container {
-			padding: 0 2rem;
-		}
-		.input-group-text {
-			background: #f7ba5b !important;
-			color: white !important;
-			border: 0 !important;
-			border-radius: 0.25rem 0 0 0.25rem !important;
-		}
-		.input_user,
-		.input_pass:focus {
-			box-shadow: none !important;
-			outline: 0px !important;
-		}
-
-		#messages{
-			background-color: grey;
-			color: #fff;
-			padding: 10px;
-			margin-top: 10px;
-		}
-
-		#image-div {
-            background-image: url("{% static 'main/images/register.png' %}");
-            background-repeat: no-repeat;
-            background-position: center;
-            height:700px;
-			}
-	</style>
 
 </head>
+
 <body>
-<div id="image-div">
-	<div class="container h-100">
-		<div class="d-flex h-100">
-			<div class="user_card">
-				<div class="form_container">
-					<form method="POST" action="">
-                        {% csrf_token %}
-						<div class="input-group mb-3">
-							<input type="text" name="username" placeholder="Username..." class="field">
-						</div>
+	<h3 id="form-title">LOGIN</h3>
 
-						<div class="naujas">
-						<div class="input-group mb-2 ">
-							
-								<input type="password" name="password" placeholder="Password..." class="field" >
-						</div>
-
-							<div class="buttonas">
-				 				<input id="login"  type="submit" value="Login">
-				   			</div>
-						</div>
-
-					</form>
-
-				</div>
-
-                {% for message in messages %}
-                    <p id="messages">{{ message }}</p>
-                {% endfor %}
-		
-				<div class="mt-4">
-					<div class="form_container1">
-						Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
-					</div>
-			
-				</div>
-			</div>
+	<!-- Visi input fields. Palikti cia viska (visa forma) -->
+	<form method="POST" action="">
+		{% csrf_token %}
+		<div>
+			<input type="text" name="username" placeholder="Username..." class="field">
+		</div>							
+			<input type="password" name="password" placeholder="Password..." class="field" >
 		</div>
-	</div>
-</div>
+		<div>
+			<input id="login"  type="submit" value="Login">
+		</div>
+	</form>
+
+	<!-- sekmingos registracijos message vienkartinis. Palikti. -->
+	{% for message in messages %}
+		<p id="messages">{{ message }}</p>
+	{% endfor %}
+
+	<!-- Nukreipia i register page`a. Geras pvz. kaip reikia dinamiskai prideti link`us Django -->
+	<p>
+		Don't have an account? <a href="{% url 'register' %}" >Sign Up</a>
+	<p>
+
 </body>
 
 </html>
